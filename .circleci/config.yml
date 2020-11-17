@@ -27,6 +27,18 @@ jobs:
           name: "Creating GH Pull Requests"
           command: |
             gh pr create --base master --title "Mulesoft automated PR" --body "Automatic PR produced based on changes";
+
+  anypoint_cli_master:
+    docker:
+      - image: 'cimg/base:stable'
+    steps:
+      - checkout
+      - node/install:
+          install-yarn: true
+      - run:
+          name: "Publishing changes on Design Center and Exchange"
+          command: |
+            echo "Here process to publish"; 
 orbs:
   node: circleci/node@1.1
 version: 2.1
@@ -37,4 +49,8 @@ workflows:
           filters:
             branches:
               only: circle-ci
+      - anypoint_cli_master:
+          filters:
+            branches:
+              only: master
       
