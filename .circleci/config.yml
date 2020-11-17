@@ -16,13 +16,12 @@ jobs:
             sudo apt update; \
             sudo apt install gh; \
             sudo apt install maven; \
-            mvn -version;\
             sudo apt-get install jq; \
             sudo echo $GH_TOKEN  >> gh_token.txt; \
             cat gh_token.txt; mkdir designCenterProject; \
-            gh auth login --with-token < gh_token.txt;
-            MVN_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec); \
-            echo ${MVN_VERSION}
+            gh auth login --with-token < gh_token.txt; \
+            MVN_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec);
+            echo "artifact version: " ${MVN_VERSION}
       - run:
           name: "Download Design Center Artifact"
           command: |
@@ -48,10 +47,13 @@ jobs:
             sudo apt-add-repository https://cli.github.com/packages; \
             sudo apt update; \
             sudo apt install gh; \
+            sudo apt install maven; \
             sudo apt-get install jq; \
             sudo echo $GH_TOKEN  >> gh_token.txt; \
             cat gh_token.txt; \
             gh auth login --with-token < gh_token.txt;
+            MVN_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec);
+            echo "artifact version: " ${MVN_VERSION}
       - run:
           name: "Publishing changes on Design Center"
           command: |
@@ -59,7 +61,7 @@ jobs:
       - run:
           name: "Publishing in Exchange"
           command: |
-            sudo anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD --environment $ANYPOINT_ENVIRONMENT designcenter project publish mainframe-system-api --version ;
+            sudo anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD --environment $ANYPOINT_ENVIRONMENT designcenter project publish mainframe-system-api --version ${MVN_VERSION} ;
 orbs:
   node: circleci/node@1.1
 version: 2.1
