@@ -53,7 +53,7 @@ jobs:
           command: |
             sudo ls -l; \
             echo $ARTIFACT_NAME; \
-            echo cd mainframe-system-api; cd src/main/resources/api; \
+            echo cd mainframe-system-api; \
             echo ls \
             sudo anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD --environment $ANYPOINT_ENVIRONMENT designcenter project upload mainframe-system-api /mainframe-system-api/src/main/resources/api;
 orbs:
