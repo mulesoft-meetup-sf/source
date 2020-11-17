@@ -27,7 +27,7 @@ jobs:
           name: "Creating GH Pull Requests"
           command: |
             git status; \
-            gh pr create --title "Automated Mulesoft Build" --base $CIRCLE_BRANCH --head master:feature;
+            gh pr create --title "Automated Mulesoft Build" --base master;
 orbs:
   node: circleci/node@1.1
 version: 2.1
