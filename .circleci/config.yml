@@ -59,9 +59,11 @@ jobs:
           command: |
             sudo anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD --environment $ANYPOINT_ENVIRONMENT designcenter project upload mainframe-system-api mainframe-system-api/src/main/resources/api/;
       - run:
-          name: "Publishing in Exchange"
+          name: "Publishing asset in Exchange"
           command: |
-            sudo anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD --environment $ANYPOINT_ENVIRONMENT designcenter project publish mainframe-system-api --version ${MVN_VERSION} ;
+            MVN_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec); \
+            GROUPID=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.groupId}' --non-recursive exec:exec); \
+            sudo anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD --environment $ANYPOINT_ENVIRONMENT designcenter project publish mainframe-system-api --version ${MVN_VERSION} --apiVersion ${MVN_VERSION::-1} --groupId b26cd1e7-7da9-4d5b-8c94-21a0e01e6ff2;
 orbs:
   node: circleci/node@1.1
 version: 2.1
