@@ -22,7 +22,7 @@ jobs:
       - run:
           name: "Download Design Center Artifact"
           command: |
-            sudo anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD --environment $ANYPOINT_ENVIRONMENT designcenter project download mule-aws-recognition-system-api designCenterProject;
+            sudo anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD --environment $ANYPOINT_ENVIRONMENT designcenter project download $ARTIFACT_NAME designCenterProject;
       #- run:
       #    name: "Creating GH Pull Requests"
       #    command: gh pr create --title "Mulesoft dialy PR check" --body "Changes identified to $CIRCLE_BRANCH " ;
@@ -35,5 +35,5 @@ workflows:
       - anypoint_cli
           filters:
             branches:
-              only: circleci-project-setup
+              only: circle-ci
       
