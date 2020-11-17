@@ -16,12 +16,11 @@ jobs:
             sudo apt update; \
             sudo apt install gh; \
             sudo apt install maven; \
-            sudo apt-get install jq; \
             sudo echo $GH_TOKEN  >> gh_token.txt; \
             cat gh_token.txt; mkdir designCenterProject; \
             gh auth login --with-token < gh_token.txt; \
             MVN_VERSION=$(mvn mvn -f mainframe-system-api/pom.xml -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec); \
-            echo "artifact version: " ${MVN_VERSION}
+            echo "artifact version" ${MVN_VERSION}
       - run:
           name: "Download Design Center Artifact"
           command: |
