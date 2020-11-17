@@ -20,7 +20,7 @@ jobs:
             cat gh_token.txt; mkdir designCenterProject; \
             gh auth login --with-token < gh_token.txt; \
             MVN_VERSION=$(mvn mvn -f mainframe-system-api/pom.xml -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec); \
-            echo "artifact version" ${MVN_VERSION}
+            echo "artifact version" ${MVN_VERSION};
       - run:
           name: "Download Design Center Artifact"
           command: |
@@ -52,7 +52,7 @@ jobs:
             cat gh_token.txt; \
             gh auth login --with-token < gh_token.txt;
             MVN_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec);
-            echo "artifact version: " ${MVN_VERSION}
+            echo "artifact version: " ${MVN_VERSION};
       - run:
           name: "Publishing changes on Design Center"
           command: |
