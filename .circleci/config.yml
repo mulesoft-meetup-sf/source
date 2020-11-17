@@ -51,10 +51,7 @@ jobs:
       - run:
           name: "Publishing changes on Design Center and Exchange"
           command: |
-            sudo ls -l; \
-            echo $ARTIFACT_NAME; \
-            echo cd mainframe-system-api; \
-            echo ls \
+            cd mainframe-system-api; \
             sudo anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD --environment $ANYPOINT_ENVIRONMENT designcenter project upload mainframe-system-api /mainframe-system-api/src/main/resources/api;
 orbs:
   node: circleci/node@1.1
