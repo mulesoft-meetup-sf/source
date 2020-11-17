@@ -1,7 +1,7 @@
 jobs:
   anypoint_cli:
     docker:
-      - image: 'circleci/openjdk:8-jdk'
+      - image: 'cimg/base:stable'
     steps:
       - checkout
       - node/install:
@@ -10,17 +10,19 @@ jobs:
           name: "Install build packages"
           command: |
             node --version; \
-            MVN_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec); \
-            echo $MVN_VERSION;\
             sudo npm install -g anypoint-cli@latest; \
             sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0; \
             sudo apt-add-repository https://cli.github.com/packages; \
             sudo apt update; \
             sudo apt install gh; \
+            sudo apt install maven; \
+            mvn -version;\
             sudo apt-get install jq; \
             sudo echo $GH_TOKEN  >> gh_token.txt; \
             cat gh_token.txt; mkdir designCenterProject; \
             gh auth login --with-token < gh_token.txt;
+            MVN_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec); \
+            echo ${MVN_VERSION}
       - run:
           name: "Download Design Center Artifact"
           command: |
