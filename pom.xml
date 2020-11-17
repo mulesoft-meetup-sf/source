@@ -7,7 +7,7 @@
     <groupId>org.mulesoft.meetup</groupId>
     <artifactId>main</artifactId>
     <version>1.0.0</version>
-    <packaging>mule-application</packaging>
+    <packaging>pom</packaging>
 
     <name>parent-pom</name>
 
