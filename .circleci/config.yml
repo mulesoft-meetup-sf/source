@@ -26,7 +26,7 @@ jobs:
       - run:
           name: "Creating GH Pull Requests"
           command: |
-            gh pr create --base master --fill;
+            gh pr create --base master --title "Mulesoft automated PR" --body "Automatic PR produced based on changes";
 orbs:
   node: circleci/node@1.1
 version: 2.1
