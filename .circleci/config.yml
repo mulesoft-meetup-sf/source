@@ -13,7 +13,7 @@ jobs:
             MVN_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec); \
             echo $MVN_VERSION;\
             sudo npm install -g anypoint-cli@latest; \
-            sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0; \
+            sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0; \ 
             sudo apt-add-repository https://cli.github.com/packages; \
             sudo apt update; \
             sudo apt install gh; \
