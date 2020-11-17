@@ -59,7 +59,7 @@ jobs:
           command: |
             sudo anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD --environment $ANYPOINT_ENVIRONMENT designcenter project upload mainframe-system-api mainframe-system-api/src/main/resources/api/;
       - run:
-          name: "Publishing in Exchange"
+          name: "Publishing asset in Exchange"
           command: |
             MVN_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec); \
             GROUPID=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.groupId}' --non-recursive exec:exec); \
