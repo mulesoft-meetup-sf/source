@@ -5,7 +5,7 @@ jobs:
     steps:
       - checkout
       - node/install:
-          install-yarn: true
+          install-yarn: false
       - run:
           name: "Install build packages"
           command: |
@@ -34,7 +34,20 @@ jobs:
     steps:
       - checkout
       - node/install:
-          install-yarn: true
+          install-yarn: false
+      - run:
+          name: "Install build packages"
+          command: |
+            node --version; \
+            sudo npm install -g anypoint-cli@latest; \
+            sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0; \
+            sudo apt-add-repository https://cli.github.com/packages; \
+            sudo apt update; \
+            sudo apt install gh; \
+            sudo apt-get install jq; \
+            sudo echo $GH_TOKEN  >> gh_token.txt; \
+            cat gh_token.txt; \
+            gh auth login --with-token < gh_token.txt;
       - run:
           name: "Publishing changes on Design Center and Exchange"
           command: |
