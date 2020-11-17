@@ -32,7 +32,7 @@ version: 2.1
 workflows:
   packages_installation:
     jobs:
-      - anypoint_cli
+      - anypoint_cli:
           filters:
             branches:
               only: circle-ci
