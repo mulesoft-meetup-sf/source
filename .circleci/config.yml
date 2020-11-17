@@ -38,7 +38,7 @@ jobs:
       - run:
           name: "Publishing changes on Design Center and Exchange"
           command: |
-            echo "Here process to publish"; 
+            sudo anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD --environment $ANYPOINT_ENVIRONMENT designcenter project upload $ARTIFACT_NAME $ARTIFACT_NAME/src/main/resources/api;
 orbs:
   node: circleci/node@1.1
 version: 2.1
