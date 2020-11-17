@@ -61,7 +61,7 @@ jobs:
       - run:
           name: "Publishing in Exchange"
           command: |
-            sudo anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD --environment $ANYPOINT_ENVIRONMENT designcenter project publish mainframe-system-api --version ${MVN_VERSION} ;
+            sudo anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD --environment $ANYPOINT_ENVIRONMENT designcenter project publish mainframe-system-api --version $(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec) ;
 orbs:
   node: circleci/node@1.1
 version: 2.1
