@@ -25,7 +25,8 @@ jobs:
             sudo anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD --environment $ANYPOINT_ENVIRONMENT designcenter project download $ARTIFACT_NAME designCenterProject;
       - run:
           name: "Creating GH Pull Requests"
-          command: gh pr create --title "Automated Mulesoft Build" --base $CIRCLE_BRANCH --head master:feature;
+          command: |
+            gh pr create --base master --fill;
 orbs:
   node: circleci/node@1.1
 version: 2.1
