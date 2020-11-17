@@ -1,0 +1,39 @@
+jobs:
+  anypoint_cli:
+    docker:
+      - image: 'cimg/base:stable'
+    steps:
+      - checkout
+      - node/install:
+          install-yarn: true
+      - run:
+          name: "Install build packages"
+          command: |
+            node --version; \
+            sudo npm install -g anypoint-cli@latest; \
+            sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0; \
+            sudo apt-add-repository https://cli.github.com/packages; \
+            sudo apt update; \
+            sudo apt install gh; \
+            sudo apt-get install jq; \
+            sudo echo $GH_TOKEN  >> gh_token.txt; \
+            cat gh_token.txt; mkdir designCenterProject; \
+            gh auth login --with-token < gh_token.txt;
+      - run:
+          name: "Download Design Center Artifact"
+          command: |
+            sudo anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD --environment $ANYPOINT_ENVIRONMENT designcenter project download $ARTIFACT_NAME designCenterProject;
+      #- run:
+      #    name: "Creating GH Pull Requests"
+      #    command: gh pr create --title "Mulesoft dialy PR check" --body "Changes identified to $CIRCLE_BRANCH " ;
+orbs:
+  node: circleci/node@1.1
+version: 2.1
+workflows:
+  packages_installation:
+    jobs:
+      - anypoint_cli:
+          filters:
+            branches:
+              only: circle-ci
+      
