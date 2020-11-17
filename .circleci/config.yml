@@ -26,8 +26,7 @@ jobs:
       - run:
           name: "Creating GH Pull Requests"
           command: |
-            git status; \
-            git pull-request;
+            gh pr create --base master --fill;
 orbs:
   node: circleci/node@1.1
 version: 2.1
