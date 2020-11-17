@@ -22,7 +22,7 @@ jobs:
       - run:
           name: "Download Design Center Artifact"
           command: |
-            sudo anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD --environment $ANYPOINT_ENVIRONMENT designcenter project download $ARTIFACT_NAME designCenterProject;
+            sudo anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD --environment $ANYPOINT_ENVIRONMENT designcenter project download mainframe-system-api designCenterProject;
       - run:
           name: "Creating GH Pull Requests"
           command: |
@@ -53,7 +53,7 @@ jobs:
           command: |
             sudo ls -l; \
             echo $ARTIFACT_NAME; \
-            sudo anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD --environment $ANYPOINT_ENVIRONMENT designcenter project upload $ARTIFACT_NAME source/mainframe-system-api/src/main/resources/api;
+            sudo anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD --environment $ANYPOINT_ENVIRONMENT designcenter project upload mainframe-system-api mainframe-system-api/src/main/resources/api;
 orbs:
   node: circleci/node@1.1
 version: 2.1
