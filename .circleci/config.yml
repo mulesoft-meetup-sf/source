@@ -42,7 +42,7 @@ jobs:
           name: "Install build packages"
           command: |
             node --version; \
-            sudo npm install -g anypoint-cli@latest; \
+            sudo npm install -g anypoint-cli@3.4.3; \
             sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0; \
             sudo apt-add-repository https://cli.github.com/packages; \
             sudo apt update; \
