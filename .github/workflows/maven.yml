@@ -23,7 +23,8 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      - run: mvn -version
-      - run: npm -version
-      - run: jq --version
-      - run: java -version
+      run: |
+          mvn -version
+          npm -version
+          jq --version
+          java -version
