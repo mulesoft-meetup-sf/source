@@ -25,4 +25,4 @@ jobs:
           jq --version
           java -version
           whoami
-          npm install -g ./anypoint-cli-3.8.0.tgz
+          npm install -g ./anypoint-cli-3.4.3.tgz
