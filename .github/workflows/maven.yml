@@ -25,4 +25,8 @@ jobs:
           jq --version
           java -version
           whoami
-          npm install -g ./anypoint-cli-3.4.3.tgz
+          npm install -g anypoint-cli@latest
+          export ANYPOINT_USERNAME=${{ secrets.ANYPOINT_USERNAME }}
+          export ANYPOINT_PASSWORD=${{ secrets.ANYPOINT_PASSWORD }}
+          export ANYPOINT_ENV=Sandbox
+          anypoint-cli account user describe
