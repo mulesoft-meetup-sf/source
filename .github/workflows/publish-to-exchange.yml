@@ -23,5 +23,7 @@ jobs:
           export ANYPOINT_USERNAME=${{ secrets.ANYPOINT_USERNAME }}
           export ANYPOINT_PASSWORD=${{ secrets.ANYPOINT_PASSWORD }}
           export ANYPOINT_ENV=Sandbox
-          export API_NAME=demo-system-api
-          mvn help:evaluate -Dexpression=project.version -q -DforceStdout -f oracle-system-api/pom.xml
+          export API_NAME=oracle-system-api
+          export ASSET_ID=$(mvn help:evaluate -Dexpression=project.name -q -DforceStdout -f $API_NAME/pom.xml)
+          export ASSET_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout -f $API_NAME/pom.xml)
+          echo $ASSET_ID-$ASSET_VERSION
