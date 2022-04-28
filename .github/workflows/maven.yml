@@ -25,4 +25,4 @@ jobs:
           jq --version
           java -version
           whoami
-          gh help environment
+          npm install -g ./anypoint-cli-3.9.7.tgz
