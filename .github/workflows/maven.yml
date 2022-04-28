@@ -1,7 +1,7 @@
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: Github Action demo
+name: Design Center Matcher
 
 on: workflow_dispatch
 
@@ -18,15 +18,13 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
+    - name: Install Anypoint CLI
       run: |
-          mvn -version
-          npm -version
-          jq --version
-          java -version
-          whoami
           npm install -g anypoint-cli@latest
+    - name: List projects in Design Center
+      run: |
           export ANYPOINT_USERNAME=${{ secrets.ANYPOINT_USERNAME }}
           export ANYPOINT_PASSWORD=${{ secrets.ANYPOINT_PASSWORD }}
           export ANYPOINT_ENV=Sandbox
-          anypoint-cli account user describe
+          anypoint-cli account environment list
+          anypoint-cli designcenter project list
