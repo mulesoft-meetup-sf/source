@@ -28,3 +28,6 @@ jobs:
           export ANYPOINT_ENV=Sandbox
           anypoint-cli account environment list
           anypoint-cli designcenter project list
+          anypoint-cli designcenter project download test .
+    - name: Submit Pull Request
+      uses: peter-evans/create-pull-request@v4
