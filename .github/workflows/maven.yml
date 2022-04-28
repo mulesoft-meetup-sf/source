@@ -24,6 +24,5 @@ jobs:
           npm -version
           jq --version
           java -version
-          npm install anypoint-cli@latest
           whoami
           gh pr status
