@@ -23,7 +23,7 @@ jobs:
           export ANYPOINT_USERNAME=${{ secrets.ANYPOINT_USERNAME }}
           export ANYPOINT_PASSWORD=${{ secrets.ANYPOINT_PASSWORD }}
           export ANYPOINT_ENV=Sandbox
-          export API_NAME=demo-system-api
+          export API_NAME=tdx-hello-api
           cp -a api-template $API_NAME
           anypoint-cli designcenter project download $API_NAME $API_NAME/src/main/resources/api
     - name: Submit Pull Request
