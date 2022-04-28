@@ -26,8 +26,8 @@ jobs:
           export ANYPOINT_USERNAME=${{ secrets.ANYPOINT_USERNAME }}
           export ANYPOINT_PASSWORD=${{ secrets.ANYPOINT_PASSWORD }}
           export ANYPOINT_ENV=Sandbox
-          anypoint-cli account environment list
-          anypoint-cli designcenter project list
-          anypoint-cli designcenter project download test .
+          export API_NAME=demo-system-api
+          cp -a api-template $API_NAME
+          anypoint-cli designcenter project download $API_NAME $API_NAME/src/main/resources/api
     - name: Submit Pull Request
       uses: peter-evans/create-pull-request@v4
