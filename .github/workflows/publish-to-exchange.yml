@@ -27,4 +27,4 @@ jobs:
           export ASSET_ID=$(mvn help:evaluate -Dexpression=project.name -q -DforceStdout -f $API_NAME/pom.xml)
           export ASSET_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout -f $API_NAME/pom.xml)
           echo $ASSET_ID-$ASSET_VERSION
-          anypoint-cli exchange asset upload --clssifier raml --apiVersion v1 --name 3a273add-4c00-4035-b500-8c6cb0607301/$ASSET_ID $API_NAME/src/main/resources/api
+          anypoint-cli exchange asset upload --classifier raml --apiVersion v1 --name 3a273add-4c00-4035-b500-8c6cb0607301/$ASSET_ID $API_NAME/src/main/resources/api
