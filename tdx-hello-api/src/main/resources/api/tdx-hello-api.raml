@@ -1,0 +1,21 @@
+#%RAML 1.0
+title: tdx-hello-api
+traits:
+  clientId: !include traits/helloTraits.raml
+types:
+  helloType: !include types/helloType.raml
+
+/hello:
+  is:
+    - clientId
+  get:
+    queryParameters:
+      name: 
+        type: string
+        example: Michi Taco
+        required: true
+    responses:
+      200:
+        body:
+          application/json:
+            type: helloType
