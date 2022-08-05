@@ -1,2 +1,0 @@
-api.id=${env.API_ID}
-http.port=8081
